@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Cars Gallery</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #0b0b0b;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: #00d4ff;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #00d4ff;
+    }
+
+    table {
+      width: 80%;
+      margin: 40px auto;
+      border-collapse: collapse;
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    }
+
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #222;
+      color: #00d4ff;
+      font-size: 18px;
+    }
+
+    td {
+      font-size: 16px;
+    }
+
+    td.brand {
+      color: #00ff90;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    td.brand:hover {
+      color: #00ff00;
+      text-decoration: underline;
+      transform: scale(1.05);
+    }
+
+    #models {
+      margin-top: 40px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    #models.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .car-card {
+      background: #161616;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(0, 255, 144, 0.2);
+      transition: 0.4s;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 255, 144, 0.3);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .car-card h3 {
+      margin: 10px 10px 5px 10px;
+      color: #00ff90;
+      font-size: 20px;
+    }
+
+    .car-card p {
+      margin: 5px 10px 10px 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .brand-title {
+      width: 100%;
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #00d4ff;
+      text-shadow: 0 0 8px #00d4ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚗 Luxury Cars Gallery</h1>
+
+  <table>
+    <tr>
+      <th>Car Name</th>
+      <th>Brand</th>
+    </tr>
+    <tr>
+      <td>Phantom</td>
+      <td class="brand" onclick="showModels('Rolls-Royce')">Rolls-Royce</td>
+    </tr>
+    <tr>
+      <td>S-Class</td>
+      <td class="brand" onclick="showModels('Mercedes')">Mercedes</td>
+    </tr>
+    <tr>
+      <td>Aventador</td>
+      <td class="brand" onclick="showModels('Lamborghini')">Lamborghini</td>
+    </tr>
+    <tr>
+      <td>812 Superfast</td>
+      <td class="brand" onclick="showModels('Ferrari')">Ferrari</td>
+    </tr>
+    <tr>
+      <td>Continental GT</td>
+      <td class="brand" onclick="showModels('Bentley')">Bentley</td>
+    </tr>
+  </table>
+
+  <div id="models"></div>
+
+  <script>
+    const carModels = {
+      "Rolls-Royce": [
+        { name: "Phantom", img: "https://m.atcdn.co.uk/vms/media/w980/d945eb9d576348c3824d48dc5fc9abd7.jpg", hp: 563, price: "$455,000" },
+        { name: "Ghost", img: "https://cdn.wheel-size.com/thumbs/2f/f0/2ff0ad635b7d7ffd60d9e3206e2db06e.jpg", hp: 563, price: "$332,000" },
+        { name: "Cullinan", img: "https://blackfoxmotors.de/wp-content/uploads/2024/04/394A3473-scaled.jpeg", hp: 563, price: "$335,000" },
+        { name: "Spectre", img: "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2024/04/rolls-royce-spectre-mansory-feature-2.jpg?w=1600&h=900&fit=crop", hp: 600, price: "$450,000" }
+      ],
+      "Mercedes": [
+        { name: "S-Class", img: "https://dealerinspire-image-library-prod.s3.us-east-1.amazonaws.com/images/kQ3PpFqkXEPTlivwZeRjpdOElFfUG2Ve6bS1wPgS.jpg", hp: 496, price: "$110,000" },
+        { name: "Maybach", img: "https://www.mercedes-benz.com/content/dam/brandhub/assets/vehicles/mercedes-maybach/mercedes-maybach-s-class-z223/stage/11-2020/images/mercedes-maybach-s-class-z223-stage-3400x1440-11-2020.jpg/_jcr_content/renditions/image-crop-default.jpeg/1730302448867.jpg?im=Resize=(2560);Crop,rect=(0,0,2560,1084)", hp: 621, price: "$185,000" },
+        { name: "AMG GT", img: "https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200", hp: 577, price: "$120,000" },
+        { name: "G-Class", img: "https://images.prismic.io/carwow/d7d113bc-6570-4db2-aa5c-0fbbecb43e90_2021+Mercedes+G-Class+front+quarter+moving+2.jpg?auto=format&cs=tinysrgb&fit=max&q=60", hp: 577, price: "$140,000" }
+      ],
+      "Lamborghini": [
+        { name: "Aventador", img: "https://hips.hearstapps.com/hmg-prod/images/2022-lamborghini-aventador-109-1625607587.jpg?crop=0.750xw:0.632xh;0.183xw,0.233xh&resize=2048:*", hp: 769, price: "$500,000" },
+        { name: "Huracán", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2eYg5QmGBIQyodAWLCj7_ofqGnCUZD57LanGe_W1Y1kfltYf2uFEepQZS0IlTaqB-x-c&usqp=CAU", hp: 631, price: "$261,000" },
+        { name: "Urus", img: "https://cdn-ds.com/blogs-media/sites/492/2024/03/20122546/2024-Lamborghini-Urus-1-B_o.jpg", hp: 650, price: "$222,000" },
+        { name: "Revuelto", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0R0XOtDRuPOkSs8hKaQkZWbBYhtxWVzUmfA&s", hp: 819, price: "$570,000" }
+      ],
+      "Ferrari": [
+        { name: "812 Superfast", img: "https://en.drivar.de/wp-content/uploads/2024/09/nate-dieckhaus-saPkzFxj-pk-unsplash-scaled-e1726832559541.jpg"hp: 800, price: "$335,000" },
+        { name: "SF90 Stradale", img: "https://cdn.motor1.com/images/mgl/qkk7zv/s3/novitec-ferrari-sf90-stradale-2022.jpg", hp: 986, price: "$625,000" },
+        { name: "Purosangue", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLR1sXp1s70ukmZI17jJNjZbbpArXy-4HV7w&s", hp: 715, price: "$400,000" }
+      ],
+      "Bentley": [
+        { name: "Continental GT", img: "https://cdn.motor1.com/images/mgl/P33v6X/s1/2023-bentley-continental-gt-s.jpg", hp: 626, price: "$231,000" },
+        { name: "Flying Spur", img: "https://media.autoexpress.co.uk/image/private/s--X-WVjvBW--/f_auto,t_content-image-full-desktop@1/v1740133659/evo/2025/02%20Feb/Bentley%20Flying%20Spur%20review%202025.jpg", hp: 626, price: "$216,000" },
+        { name: "Bentayga", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsT8tesk-bGqyop5KnHxsNFMz9R3PZZz2AoQ&s", hp: 621, price: "$178,000" }
+      ]
+    };
+
+    function showModels(brand) {
+      const container = document.getElementById("models");
+      const models = carModels[brand];
+      if(!models) return;
+
+      container.innerHTML = `
+        <div class="brand-title">🚘 ${brand} Models</div>
+        ${models.map(m => `
+          <div class="car-card">
+            <img src="${m.img}" alt="${m.name}">
+            <h3>${m.name}</h3>
+            <p>Horsepower: ${m.hp} HP</p>
+            <p>Price: ${m.price}</p>
+          </div>
+        `).join('')}
+      `;
+
+      container.classList.remove("show");
+      requestAnimationFrame(() => container.classList.add("show"));
+    }
+  </script>
+
+</body>
+</html>
